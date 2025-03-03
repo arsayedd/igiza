@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الرياضة</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #d31027 0%, #ea8d07 100%);
+        }
+
+        .navbar {
+            background: var(--primary-gradient) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            height: 100%;
+            border: 1px solid #e0e0e0;
+        }
+
+        .product-card .card-title {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .product-badge {
+            background-color: #000000 !important;
+            color: #ffd700 !important;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d31027;
+        }
+
+        .category-filter {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">متجر جامب ستور</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">الرئيسية</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            الأقسام
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="filterProducts('men')">ملابس رياضية رجالي</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="filterProducts('women')">ملابس رياضية نسائية</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="filterProducts('accessories')">أدوات رياضية</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-white" id="userGreeting"></span>
+                    <a href="#" class="btn btn-light position-relative me-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </a>
+                    <button type="button" class="btn btn-outline-light" onclick="window.location.href='index.html';">
+                        <i class="fas fa-sign-out-alt me-1"></i>
+                        تسجيل خروج
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold">أحدث المنتجات الرياضية</h1>
+                    <p class="lead">اكتشف مجموعتنا الجديدة من الملابس والأدوات الرياضية بأسعار مناسبة</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438" alt="صورة ترحيبية" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="container py-5">
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">تصفية المنتجات</h4>
+                <div class="btn-group">
+                    <button class="btn btn-outline-danger active" onclick="filterProducts('all')">الكل</button>
+                    <button class="btn btn-outline-danger" onclick="filterProducts('men')">رجالي</button>
+                    <button class="btn btn-outline-danger" onclick="filterProducts('women')">نسائي</button>
+                    <button class="btn btn-outline-danger" onclick="filterProducts('accessories')">أدوات رياضية</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="row g-4" id="productsContainer">
+            <!-- المنتجات ستضاف هنا عن طريق JavaScript -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // تعريف كائن لإدارة المتجر
+        const StoreManager = {
+            isLoggedIn: function() {
+                // في النسخة التجريبية، نعتبر المستخدم مسجل دخول دائماً
+                return true;
+            },
+            getCurrentUser: function() {
+                // بيانات المستخدم الافتراضي
+                return {
+                    username: "زائر"
+                };
+            },
+            addToCart: function(product) {
+                // إضافة للسلة (تجريبي)
+                return true;
+            },
+            updateCartBadge: function() {
+                // تحديث عدد المنتجات في السلة
+                // هذه وظيفة تجريبية فقط
+            }
+        };
+
+        // بيانات المنتجات الرياضية
+        const products = [
+            {
+                id: 1,
+                name: "حذاء رياضي للجري",
+                description: "حذاء خفيف الوزن مناسب للجري لمسافات طويلة",
+                price: 799,
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+                category: "men",
+                badge: "جديد"
+            },
+            {
+                id: 2,
+                name: "بنطلون رياضي رجالي",
+                description: "بنطلون رياضي مرن مناسب للتمارين الرياضية",
+                price: 399,
+                image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
+                category: "men"
+            },
+            {
+                id: 3,
+                name: "تي شيرت رياضي نسائي",
+                description: "قميص رياضي خفيف مصنوع من أقمشة تمتص العرق",
+                price: 249,
+                image: "https://images.unsplash.com/photo-1554568218-0f1715e72254",
+                category: "women",
+                badge: "عرض خاص"
+            },
+            {
+                id: 4,
+                name: "كرة قدم احترافية",
+                description: "كرة قدم مصنوعة من أفضل المواد ومناسبة للملاعب المختلفة",
+                price: 349,
+                image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55",
+                category: "accessories"
+            },
+            {
+                id: 5,
+                name: "سترة رياضية نسائية",
+                description: "سترة رياضية دافئة مناسبة للجري في الأجواء الباردة",
+                price: 549,
+                image: "https://images.unsplash.com/photo-1545639246-c09918e159c8",
+                category: "women"
+            },
+            {
+                id: 6,
+                name: "حقيبة رياضية متعددة الاستخدامات",
+                description: "حقيبة رياضية واسعة بتصميم عصري",
+                price: 299,
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62",
+                category: "accessories",
+                badge: "الأكثر مبيعاً"
+            },
+            {
+                id: 7,
+                name: "شورت رياضي رجالي",
+                description: "شورت رياضي مريح للتمارين والجري",
+                price: 199,
+                image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5",
+                category: "men"
+            },
+            {
+                id: 8,
+                name: "زجاجة ماء رياضية",
+                description: "زجاجة ماء مضادة للتسرب ومناسبة للرياضيين",
+                price: 99,
+                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8",
+                category: "accessories"
+            },
+            {
+                id: 9,
+                name: "سترة رياضية نسائية للتمرين",
+                description: "سترة خفيفة مناسبة للتمارين في الصالة الرياضية",
+                price: 449,
+                image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b",
+                category: "women"
+            }
+        ];
+
+        // عرض المنتجات
+        function displayProducts(productsToShow) {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            productsToShow.forEach(product => {
+                const productCard = `
+                    <div class="col-md-4 mb-4">
+                        <div class="product-card">
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                            <img src="${product.image}" class="card-img-top product-image" alt="${product.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">${product.description}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="price-tag">${product.price} ج.م</span>
+                                    <button class="btn btn-primary" onclick="addToCart(${product.id})">
+                                        <i class="fas fa-cart-plus"></i>
+                                        أضف للسلة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+        }
+
+        // تصفية المنتجات
+        function filterProducts(category) {
+            const filteredProducts = category === 'all'
+                ? products
+                : products.filter(product => product.category === category);
+
+            displayProducts(filteredProducts);
+
+            // تحديث الأزرار النشطة
+            document.querySelectorAll('.btn-group .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // وظيفة إضافة منتج إلى السلة
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                if (StoreManager.addToCart(product)) {
+                    // إنشاء عنصر div للرسالة
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'alert alert-success position-fixed top-0 start-50 translate-middle-x mt-3';
+                    messageDiv.style.zIndex = '1000';
+                    messageDiv.innerHTML = `
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle me-2"></i>
+                            تم إضافة ${product.name} إلى السلة بنجاح!
+                        </div>
+                    `;
+
+                    // إضافة الرسالة إلى الصفحة
+                    document.body.appendChild(messageDiv);
+
+                    // إخفاء الرسالة بعد 3 ثواني
+                    setTimeout(() => {
+                        messageDiv.remove();
+                    }, 3000);
+                }
+            }
+        }
+
+        // التحقق من تسجيل الدخول وعرض المنتجات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!StoreManager.isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const currentUser = StoreManager.getCurrentUser();
+            if (currentUser) {
+                document.getElementById('userGreeting').textContent = `مرحباً ${currentUser.username}`;
+            }
+
+            displayProducts(products);
+            StoreManager.updateCartBadge();
+        });
+    </script>
+</body>
+</html>

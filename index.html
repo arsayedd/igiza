@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامب ستور - الصفحة الرئيسية</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #d31027 0%, #ea8d07 100%);
+        }
+
+        .hero-section {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .auth-buttons .btn {
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .auth-buttons .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .features-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background: white;
+            border-bottom: 3px solid #ffd700;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #d31027;
+        }
+
+        .welcome-image {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: 5px solid white;
+        }
+
+        .welcome-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        #shopNowBtn {
+            background: #000000;
+            color: #ffd700;
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: none;
+        }
+
+        #shopNowBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background: #1a1a1a;
+        }
+
+        .auth-section {
+            margin-top: 2rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: bold;
+        }
+
+        .features-section h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .features-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-3 fw-bold mb-4">مرحباً بك في <span style="color: #ffd700;">جامب ستور</span> لمعهد الجيزة العالي للعلوم الإدارية</h1>
+                    <p class="lead mb-4">اكتشف أحدث المنتجات الرياضية والملابس وأفضل العروض</p>
+                    <div class="auth-section">
+                        <div id="guestButtons" class="auth-buttons">
+                            <a href="register.html" class="btn btn-light">
+                                <i class="fas fa-user-plus me-2"></i>
+                                تسجيل حساب جديد
+                            </a>
+                            <a href="login.html" class="btn btn-outline-light">
+                                <i class="fas fa-sign-in-alt me-2"></i>
+                                تسجيل دخول
+                            </a>
+                        </div>
+                        <a href="store.html" id="shopNowBtn" class="btn">
+                            <i class="fas fa-shopping-bag me-2"></i>
+                            تسوق الآن
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438"
+                         alt="صورة ترحيبية"
+                         class="img-fluid rounded shadow welcome-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="text-center mb-5">لماذا تختار جامب ستور؟</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-truck feature-icon"></i>
+                        <h3>توصيل سريع</h3>
+                        <p>نوفر خدمة توصيل سريعة وآمنة لجميع أنحاء المدينة</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-tag feature-icon"></i>
+                        <h3>أسعار تنافسية</h3>
+                        <p>أفضل الأسعار مع ضمان الجودة العالية</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-undo feature-icon"></i>
+                        <h3>استبدال مجاني</h3>
+                        <p>استبدال مجاني خلال 14 يوم من الشراء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // تعريف كائن لإدارة المتجر
+        const StoreManager = {
+            isLoggedIn: function() {
+                // في النسخة التجريبية، نعتبر المستخدم غير مسجل دخول
+                return false;
+            },
+            getCurrentUser: function() {
+                // بيانات المستخدم الافتراضي
+                return {
+                    username: "زائر"
+                };
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // التحقق من حالة تسجيل الدخول
+            if (StoreManager.isLoggedIn()) {
+                // إخفاء أزرار تسجيل الدخول والتسجيل
+                document.getElementById('guestButtons').style.display = 'none';
+                // إظهار زر التسوق
+                document.getElementById('shopNowBtn').style.display = 'inline-block';
+            }
+        });
+    </script>
+</body>
+</html>

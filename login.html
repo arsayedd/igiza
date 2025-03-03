@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - جامب ستور</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #d31027 0%, #ea8d07 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            border-bottom: 5px solid #ffd700;
+        }
+
+        .login-header {
+            background: linear-gradient(45deg, #d31027, #ea8d07);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+
+        .form-control {
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #ddd;
+        }
+
+        .form-control:focus {
+            border-color: #d31027;
+            box-shadow: 0 0 0 0.25rem rgba(211, 16, 39, 0.25);
+        }
+
+        .input-group-text {
+            border-radius: 50px 0 0 50px !important;
+            background: transparent;
+        }
+
+        .btn-login {
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #d31027, #ea8d07);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .social-login {
+            border-top: 1px solid #dee2e6;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .facebook { background: #3b5998; }
+        .google { background: #db4437; }
+        .twitter { background: #1da1f2; }
+
+        .store-logo {
+            display: block;
+            margin: 0 auto 1rem;
+            max-width: 80px;
+        }
+
+        .text-primary {
+            color: #d31027 !important;
+        }
+
+        .form-check-input:checked {
+            background-color: #d31027;
+            border-color: #d31027;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-card">
+                    <div class="login-header">
+                        <h2 class="mb-0">
+                            <i class="fas fa-sign-in-alt me-2"></i>
+                            تسجيل الدخول إلى جامب ستور
+                        </h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="loginForm">
+                            <div class="mb-4">
+                                <div class="input-group">
+                                    <input type="email" name="email" class="form-control" placeholder="البريد الإلكتروني" required>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control" placeholder="كلمة المرور" required>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-4 d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                                    <label class="form-check-label" for="remember">تذكرني</label>
+                                </div>
+                                <a href="#" class="text-primary text-decoration-none">نسيت كلمة المرور؟</a>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-login w-100 mb-3" onclick="document.getElementById('loginForm').dispatchEvent(new Event('submit'))">
+                                دخول
+                            </button>
+
+                            <div class="text-center">
+                                ليس لديك حساب؟
+                                <a href="register.html" class="text-primary text-decoration-none">تسجيل حساب جديد</a>
+                            </div>
+                        </form>
+
+                        <div class="social-login text-center">
+                            <p class="text-muted mb-3">أو سجل دخول عبر</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="social-btn facebook" onclick="handleSocialLogin('facebook')">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-btn google" onclick="handleSocialLogin('google')">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                                <a href="#" class="social-btn twitter" onclick="handleSocialLogin('twitter')">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // تعريف كائن لإدارة المتجر
+        const StoreManager = {
+            isLoggedIn: function() {
+                return localStorage.getItem('isLoggedIn') === 'true';
+            },
+            login: function(email, password) {
+                // في الإصدار التجريبي، نقبل أي بيانات تسجيل دخول
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+
+                return {
+                    success: true,
+                    message: 'تم تسجيل الدخول بنجاح'
+                };
+            },
+            logout: function() {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+            }
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const email = formData.get('email');
+            const password = formData.get('password');
+            const remember = formData.get('remember');
+
+            const result = StoreManager.login(email, password);
+
+            if (result.success) {
+                if (remember) {
+                    localStorage.setItem('rememberedEmail', email);
+                }
+                window.location.href = 'store.html';
+            } else {
+                alert(result.message || 'بيانات تسجيل الدخول غير صحيحة');
+            }
+        });
+
+        function handleSocialLogin(platform) {
+            alert('عذراً، تسجيل الدخول عبر ' + platform + ' غير متاح حالياً');
+        }
+
+        // التحقق من وجود بيانات محفوظة
+        document.addEventListener('DOMContentLoaded', function() {
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            if (rememberedEmail) {
+                document.querySelector('input[name="email"]').value = rememberedEmail;
+                document.getElementById('remember').checked = true;
+            }
+
+            if (StoreManager.isLoggedIn()) {
+                window.location.href = 'store.html';
+            }
+        });
+    </script>
+</body>
+</html>
